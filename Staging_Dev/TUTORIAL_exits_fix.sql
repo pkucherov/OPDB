@@ -4,6 +4,7 @@ GO
 ---ADD DUMMY ZONES FOR TRAINING RACE SELECTION
 --REQUIRES ZONE 50/51 BINS IN SERVER DATA LAYERS!
 
+--TODO: Replace fields here?
 INSERT INTO [dbo].[zones]
            ([id],[x],[y],[name],[description],[note],[fertility],[zoneplugin],[zoneip],[zoneport],[isinstance],[enabled],[spawnid],[plantruleset],[protected],[raceid],[width],[height],[terraformable],[zonetype],[sparkcost],[maxdockingbase],[sleeping],[plantaltitudescale],[host],[active])
      VALUES
@@ -13,8 +14,15 @@ INSERT INTO [dbo].[zones]
      VALUES
            (51,51000,51000,'zone_TM','zone_TM_desc','ASI-TRAINING TRAINING EXIT DUMMY ISLAND',20,'zone_50',NULL,18845,0,1,0,0,1,3,1024,1024,0,3,0,0,0,1,NULL,1)
 
-
-
+--Updates to dummy islands
+--@Bler Replace fields in Insert if inserts not run on final patch file!
+--Use new layer files -- set to be one-tile amount of empty data
+UPDATE [dbo].[zones]
+SET x=-50000,
+  y=50000,
+  width=1,
+  height=1
+WHERE id=50 or id=51;
 
 
 --Set Targets for training exits to dummy zones
@@ -31,7 +39,7 @@ UPDATE [dbo].[teleportdescriptions]
       ,[targetrange] = 5
       ,[usetimeout] = 0
       ,[listable] = 1
-      ,[active] = 1
+      ,[active] = 0
       ,[type] = 3
       ,[sourcecolumnname] = 'tp_train_asi_exit'
       ,[targetcolumnname] = NULL
@@ -50,7 +58,7 @@ UPDATE [dbo].[teleportdescriptions]
       ,[targetrange] = 5
       ,[usetimeout] = 0
       ,[listable] = 1
-      ,[active] = 1
+      ,[active] = 0
       ,[type] = 3
       ,[sourcecolumnname] = 'tp_train_ics_exit'
       ,[targetcolumnname] = NULL
@@ -69,7 +77,7 @@ UPDATE [dbo].[teleportdescriptions]
       ,[targetrange] = 5
       ,[usetimeout] = 0
       ,[listable] = 1
-      ,[active] = 1
+      ,[active] = 0
       ,[type] = 3
       ,[sourcecolumnname] = 'tp_train_indy_exit'
       ,[targetcolumnname] = NULL
@@ -88,7 +96,7 @@ UPDATE [dbo].[teleportdescriptions]
       ,[targetrange] = 5
       ,[usetimeout] = 0
       ,[listable] = 1
-      ,[active] = 1
+      ,[active] = 0
       ,[type] = 3
       ,[sourcecolumnname] = 'tp_train_indy_exit'
       ,[targetcolumnname] = NULL
